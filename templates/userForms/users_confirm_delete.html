@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>
+        Está seguro de eliminar la receta {{ user.user_full_name }}
+    </h1>
+    <form method="post">{% csrf_token %}
+        <input class="btn btn-secondary btn-lg" type="submit" value="SI">
+        <a class="btn btn-secondary btn-lg" href="{% url 'users_list' %}">No</a>
+    </form>
+
+{% endblock %}

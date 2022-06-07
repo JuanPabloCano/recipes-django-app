@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if not response %}
+        <h1 class="display-6 d-flex justify-content-center" style="margin-bottom: 10rem">Buscando receta {{ name }}</h1>
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <div class="container d-flex justify-content-center">
+                    <div class="row-lg-5">
+                        <div class="card text-white mb-3" style="max-width: 18rem;">
+                            <div class="card-header text-bg-dark d-flex justify-content-center">
+                                {{ recipe.recipe_name }}
+                            </div>
+
+                            <div class="card-body ">
+                                <h5 class="card-title">{{ recipe.recipe_name }}</h5>
+                                <a href="{% url 'recipes_detail' recipe.id %}"
+                                   class="btn btn-secondary btn-lg d-flex justify-content-center">Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <a class="btn btn-secondary btn-lg" href="{% url 'recipes_list' %}">Regresar</a>
+        {% else %}
+            <h1 class="display-3">ERROR! NO SE ENCONTRARON DATOS</h1>
+            <a class="btn btn-secondary btn-lg" href="{% url 'recipes_list' %}">Atrás</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

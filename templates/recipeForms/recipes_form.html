@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+    <h1 class="display-5 d-flex justify-content-center">
+        Formulario para la creación de receta
+    </h1>
+    <form method="post">{% csrf_token %}
+        <div class="row">
+            <div class="col-md-4 mb-3 mt-3">
+                {{ form.recipe_name|as_crispy_field }}
+            </div>
+            <div class="col-md-8 mb-3 mt-3">
+                {{ form.creation_date|as_crispy_field }}
+            </div>
+        </div>
+        <div class="mb-5">
+            {{ form.recipe_ingredients|as_crispy_field }}
+        </div>
+        <div class="mb-5">
+            {{ form.recipe_instructions|as_crispy_field }}
+        </div>
+        <div class="mb-5">
+            {{ form.user|as_crispy_field }}
+        </div>
+        <input class="btn btn-secondary btn-lg" type="submit" value="Enviar">
+        <a class="btn btn-secondary btn-lg" href="{% url 'recipes_list' %}">Regresar</a>
+    </form>
+{% endblock %}

@@ -14,8 +14,8 @@
     <title>Recipes</title>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
+<header class="masthead">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="headerNav">
         <div class="container-fluid">
             <a class="navbar-brand d-block d-lg-none" href="#">
                 <img src="#" height="80"/>
@@ -28,35 +28,34 @@
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link mx-2" aria-current="page" href="{% url 'inicio' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="#">Recetas</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Recetas
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'recipes_list' %}">Ver recetas</a>
+                            <a class="dropdown-item" href="{% url 'recipes_create' %}">Crear receta</a>
+                        </div>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link mx-2" href="#">
+                        <a class="nav-link mx-2">
                             <img src="#" height="80" alt=""/>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Company
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Blog</a></li>
-                            <li><a class="dropdown-item" href="#">About Us</a></li>
-                            <li><a class="dropdown-item" href="#">Contact us</a></li>
-                        </ul>
+                        <a class="nav-link mx-2" href="{% url 'users_list' %}">Chefs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#">Log-In</a>
+                        <a class="nav-link mx-2" href="">Log-In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#">Sign-Up</a>
+                        <a class="nav-link mx-2" href="">Sign-Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="{% url 'about' %}"> About Us </a>
                     </li>
                 </ul>
             </div>
@@ -66,16 +65,12 @@
 
 <article>
     <div class="container">
-        <div class="row">
-            <div class="col-">
-                {% block content %}
-
-                {% endblock %}
-            </div>
+        <div class="col-md-10 offset-md-1 mt-5">
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 </article>
-
 <footer class="mainfooter" role="contentinfo">
     <div class="footer-middle">
         <div class="container">

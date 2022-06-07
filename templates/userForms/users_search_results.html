@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if not response %}
+        <h1 class="display-6 d-flex justify-content-center">Buscando usuario {{ name }}</h1>
+        {% if users %}
+            {% for user in users %}
+                <div class="row-lg-5 justify-content-center mt-5">
+                    <div class="card text-white mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-bg-dark d-flex justify-content-center">
+                            {{ user.user_full_name }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title ">{{ user.user_name }}</h5>
+                            <a href="{% url 'users_detail' user.id %}" class="btn btn-primary d-flex justify-content-center">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <button class="btn btn btn-outline-dark">
+                <a href="{% url 'users_list' %}">Regresar</a>
+            </button>
+        {% else %}
+            <h1 class="display-3">ERROR! NO SE ENCONTRARON DATOS</h1>
+            <button class="btn btn btn-outline-dark">
+                <a href="{% url 'users_list' %}">Atrás</a>
+            </button>
+        {% endif %}
+    {% endif %}
+{% endblock %}

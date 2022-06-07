@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+    <h1>
+        Formulario para la creación de usuarios
+    </h1>
+    <form method="post">{% csrf_token %}
+        <div class="row">
+            <div class="col-md-4 mb-3 mt-3">
+                {{ form.user_full_name|as_crispy_field }}
+            </div>
+            <div class="col-md-8 mb-3 mt-3">
+                {{ form.user_age|as_crispy_field }}
+            </div>
+        </div>
+        <div class="mb-5">
+            {{ form.user_email|as_crispy_field }}
+        </div>
+        <input class="btn btn-secondary btn-lg" type="submit" value="Enviar">
+        <a class="btn btn-secondary btn-lg" href="{% url 'users_list' %}">Regresar</a>
+    </form>
+{% endblock %}

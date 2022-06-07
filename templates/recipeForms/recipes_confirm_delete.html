@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>
+        Está seguro de eliminar la receta {{ recipes.name }}
+    </h1>
+    <form method="post">{% csrf_token %}
+        <input class="btn btn-secondary btn-lg" type="submit" value="SI">
+        <a class="btn btn-secondary btn-lg" href="{% url 'recipes_list' %}">No</a>
+    </form>
+{% endblock %}

@@ -8,14 +8,27 @@ body {
     grid-template-rows: 1fr auto;
 }
 
+header{
+	width: 100%;
+	padding: 0;
+}
+
+article{
+	padding-bottom: 4rem;
+}
+
+#headerNav{
+    background: #16222A;
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    background: linear-gradient(59deg, #3A6073, #16222A);
+    color: white;
+}
+
 footer {
     background: #16222A;
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
     background: linear-gradient(59deg, #3A6073, #16222A);
     color: white;
-    margin-top: 100px;
-    grid-row-start: 2;
-    grid-row-end: 3;
 }
 
 footer a {
@@ -40,7 +53,6 @@ footer a:hover {
     color: white;
 }
 
-
 /*SOCİAL İCONS*/
 
 /* footer social icons */
@@ -56,7 +68,6 @@ ul.social-network li {
     display: inline;
     margin: 0 5px;
 }
-
 
 /* footer social icons */
 
@@ -128,10 +139,4 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 
-#headerNav{
-    background: #16222A;
-    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-    background: linear-gradient(59deg, #3A6073, #16222A);
-    color: white;
-}
 
