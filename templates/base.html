@@ -28,16 +28,18 @@
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2" aria-current="page" href="{% url 'inicio' %}">Home</a>
+                        <a class="nav-link mx-2 px-5" aria-current="page" href="{% url 'inicio' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle px-5" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             Recetas
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'recipes_list' %}">Ver recetas</a>
-                            <a class="dropdown-item" href="{% url 'recipes_create' %}">Crear receta</a>
+                            {% if request.user.is_authenticated %}
+                                <a class="dropdown-item" href="{% url 'recipes_create' %}">Crear receta</a>
+                            {% endif %}
                         </div>
                     </li>
                     <li class="nav-item d-none d-lg-block">
@@ -45,17 +47,30 @@
                             <img src="#" height="80" alt=""/>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="{% url 'users_list' %}">Chefs</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle px-5" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Chefs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'users_list' %}">Chefs</a>
+                            {% if request.user.is_authenticated %}
+                                <a class="dropdown-item" href="{% url 'users_create' %}">Crear Perfil</a>
+                            {% endif %}
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="">Log-In</a>
+                        <a class="nav-link mx-2 px-5" href="{% url 'signup' %}">Sign-Up</a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 px-5" href="{% url 'logout' %}">Log-Out</a>
+                            {% else %}
+                            <a class="nav-link mx-2 px-5" href="{% url 'login' %}">Log-In</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="">Sign-Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="{% url 'about' %}"> About Us </a>
+                        <a class="nav-link mx-2 px-5" href="{% url 'about' %}"> About Us </a>
                     </li>
                 </ul>
             </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -78,17 +78,17 @@ def search_recipes(request):
 # Users
 
 class UsersList(ListView):
-    model = User
+    model = UserModel
     template_name = 'userForms/users_list.html'
 
 
 class UserDetail(DetailView):
-    model = User
+    model = UserModel
     template_name = 'userForms/user_detail.html'
 
 
 class UserCreate(CreateView):
-    model = User
+    model = UserModel
     success_url = reverse_lazy('users_list')
     template_name = 'userForms/user_form.html'
     form_class = UsersForm
@@ -99,14 +99,14 @@ class UserCreate(CreateView):
 
 
 class UserUpdate(UpdateView):
-    model = User
+    model = UserModel
     success_url = reverse_lazy('users_list')
     template_name = 'userForms/user_form.html'
     fields = ['user_full_name', 'user_age', 'user_email']
 
 
 class UserDelete(DeleteView):
-    model = User
+    model = UserModel
     template_name = 'userForms/users_confirm_delete.html'
     success_url = reverse_lazy('users_list')
     fields = ['user_full_name', 'user_age', 'user_email']
@@ -119,7 +119,7 @@ def user_search_result(request):
 def search_users(request):
     if request.GET['name']:
         name = request.GET['name']
-        users = User.objects.filter(user_full_name__contains=name)
+        users = UserModel.objects.filter(user_full_name__contains=name)
         ctx = {'users': users,
                'name': name}
         return render(request, 'userForms/users_search_results.html', ctx)
@@ -127,3 +127,15 @@ def search_users(request):
         response = 'No se encontraron datos'
         ctx = {'response': response}
         return render(request, 'userForms/users_search_results.html', ctx)
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('recipes_list')
+    else:
+        form = UserSignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})

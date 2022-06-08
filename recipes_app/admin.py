@@ -4,5 +4,5 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Recipes)
-admin.site.register(User)
+admin.site.register(UserModel)
 admin.site.register(Avatar)

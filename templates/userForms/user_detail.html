@@ -4,26 +4,28 @@
 {% block content %}
     <div class="container mb-5">
         <h1 class="display-6 d-flex justify-content-center">
-            Información del usuario: {{ user.user_full_name }}
+            Información del usuario: {{ usermodel.user_full_name }}
         </h1>
     </div>
     <div class="card text-center mt-3" style="margin-bottom: 10rem">
         <div class="card-header">
             <ul class="nav nav-pills card-header-pills">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users_update' user.id %}">Actualizar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users_delete' user.id %}">Eliminar</a>
-                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users_update' usermodel.id %}">Actualizar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users_delete' usermodel.id %}">Eliminar</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users_list' %}">Regresar</a>
                 </li>
             </ul>
         </div>
         <div class="card-body">
-            <h5 class="card-title"> Edad : {{ user.user_age }}</h5>
-            <p class="card-text">Email: {{ user.user_email }}</p>
+            <h5 class="card-title"> Edad : {{ usermodel.user_age }}</h5>
+            <p class="card-text">Email: {{ usermodel.user_email }}</p>
         </div>
     </div>
 

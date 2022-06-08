@@ -1,5 +1,7 @@
 from django import forms
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class RecipesForm(forms.ModelForm):
@@ -17,10 +19,16 @@ class RecipesForm(forms.ModelForm):
 
 class UsersForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = UserModel
         fields = ['user_full_name', 'user_age', 'user_email']
         labels = {
             'user_full_name': 'Nombre completo',
             'user_age': 'Edad',
             'user_email': 'Email'
         }
+
+
+class UserSignUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']

@@ -10,12 +10,14 @@
     <div class="card text-center mt-3" style="margin-bottom: 10rem">
         <div class="card-header">
             <ul class="nav nav-pills card-header-pills">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'recipes_update' recipes.id %}">Actualizar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'recipes_delete' recipes.id %}">Eliminar</a>
-                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'recipes_update' recipes.id %}">Actualizar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'recipes_delete' recipes.id %}">Eliminar</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'recipes_list' %}">Regresar</a>
                 </li>

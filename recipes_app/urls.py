@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', inicio, name='inicio'),
@@ -12,8 +13,6 @@ urlpatterns = [
     path('recipes/search/', search_recipes, name='search_recipes'),
     path('recipes/search/results/', recipe_search_result, name='recipes_search_results'),
 
-
-
     path('users/list/', UsersList.as_view(), name='users_list'),
     path('users/<pk>', UserDetail.as_view(), name='users_detail'),
     path('users/create/', UserCreate.as_view(), name='users_create'),
@@ -22,4 +21,7 @@ urlpatterns = [
     path('users/search/', search_users, name='search_users'),
     path('users/search/results/', user_search_result, name='users_search_results'),
 
+    path('signup/', signup, name='signup'),
+    path('logout/', auth_views.LoginView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login')
 ]

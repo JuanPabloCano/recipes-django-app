@@ -9,22 +9,19 @@
             <input type="submit" value="Buscar">
         </form>
     </div>
-    <h2 class="display-3 d-flex justify-content-center">
-        Recetas
-    </h2>
     {% for recipe in object_list %}
         <div class="jumbotron mt-5">
             <div class="card text-center">
                 <div class="card-header">
-                    <h1 class="display-6">{{ recipe.recipe_name }}</h1>
+                    <h1 class="display-4">{{ recipe.recipe_name }}</h1>
                     <hr class="my-4">
                     <div class="card-body">
                         <div class="mb-5">
-                            <h5 class="display-6">Ingredientes:</h5>
+                            <h3 class="display-6">Ingredientes:</h3>
                             {% for ingredient in recipe.recipe_ingredients %}
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center"><h5>{{ ingredient.name }}</h5>
-                                        <span class="badge badge-secondary badge-pill" style="color:black">Cantidad: {{ ingredient.Quantity }}</span>
+                                <ul class="list-group list-group-flush d-flex justify-content-center">
+                                    <li class="list-group-item">
+                                        <h5 class="mt-4">{{ ingredient }}</h5>
                                     </li>
                                 </ul>
                             {% endfor %}
