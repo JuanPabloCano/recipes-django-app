@@ -15,7 +15,7 @@
     {% for UserModel in object_list %}
         <div class="card-deck mt-5">
             <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="{%  static 'img/logo-chef.jpg' %}" alt="Card image" style="width: 6rem; height: 6rem;">
                 <div class="card-body justify-content-center d-flex">
                     <h5 class="card-title">{{ UserModel.user_full_name }}</h5>
                 </div>

@@ -6,8 +6,6 @@
         <label for="name"></label>
         <input type="text" placeholder="name" name="name" id="name">
         <input type="submit" value="Buscar">
-        <button>
-            <a href="{% url 'users_list' %}">Regresar</a>
-        </button>
+        <a class="btn btn-secondary btn-lg" href="{% url 'users_list' %}">Regresar</a>
     </form>
 {% endblock %}

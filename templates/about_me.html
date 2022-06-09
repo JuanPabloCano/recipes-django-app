@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="display-1 d-flex justify-content-center mb-5">About me</h1>
+        <div class="row">
+            <p class="lead font-monospace">
+                Mi nombre es Juan Pablo Cano, soy de Colombia y actualmente me desempeño como desarrollador junior.
+                Mi carrera laboral comenzó hace apenas 4 meses, así que ha sido difícil, pero he aprendido bastante
+                afortunadamente. Hasta el momento el lenguaje que más me ha gustado ha sido Python, desearía estar en un
+                entorno laboral donde se utilice este lenguaje, ya que actualmente en mi trabajo se utiliza Javascript y sus
+                frameworks.
+                El proyecto final del curso que decidí crear fue una página de recetas tipo blog, donde un usuario autenticado
+                puede crear un perfil y así mismo crear una o varias recetas. Para esto utilicé netamente python con Django y bootstrap
+                para dar estilos.
+                El proyecto está dividido en 2 aplicaciones, una para las recetas, autenticación y creación de perfiles de usuario y
+                otra para la parte del chat.
+                La base de datos utilizada es MySQL. Se hicieron relaciones entre modelos ONE TO MANY.
+            </p>
+        </div>
+    </div>
+
+{% endblock %} %}

@@ -11,24 +11,28 @@
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
     <title>Recipes</title>
 </head>
 <body>
 <header class="masthead">
     <nav class="navbar navbar-expand-lg navbar-dark" id="headerNav">
         <div class="container-fluid">
-            <a class="navbar-brand d-block d-lg-none" href="#">
-                <img src="#" height="80"/>
-            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav mx-auto ">
+                <ul class="navbar-nav" style="display: contents">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 px-5" aria-current="page" href="{% url 'inicio' %}">Home</a>
+                        <div class="nav-link mx-2 px-5">
+                            <img src="{% static 'img/logo.jpg' %}" height="60" width="60" alt=""/>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 px-lg-5" aria-current="page" href="{% url 'inicio' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle px-5" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
@@ -41,11 +45,6 @@
                                 <a class="dropdown-item" href="{% url 'recipes_create' %}">Crear receta</a>
                             {% endif %}
                         </div>
-                    </li>
-                    <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link mx-2">
-                            <img src="#" height="80" alt=""/>
-                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle px-5" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
@@ -64,13 +63,16 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
+                            <a class="nav-link mx-2 px-5" href="{% url 'chat_rooms' %}"> Ver Chat Rooms </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link mx-2 px-5" href="{% url 'logout' %}">Log-Out</a>
                             {% else %}
                             <a class="nav-link mx-2 px-5" href="{% url 'login' %}">Log-In</a>
                         </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link mx-2 px-5" href="{% url 'about' %}"> About Us </a>
+                        <a class="nav-link mx-2 px-5" href="{% url 'about' %}"> About Me </a>
                     </li>
                 </ul>
             </div>
@@ -92,51 +94,40 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-pad">
-                        <h4>Heading 1</h4>
+                        <h4>Home</h4>
                         <ul class="list-unstyled">
                             <li><a href="#"></a></li>
-                            <li><a href="#">Payment Center</a></li>
-                            <li><a href="#">Contact Directory</a></li>
-                            <li><a href="#">Forms</a></li>
-                            <li><a href="#">News and Updates</a></li>
-                            <li><a href="#">FAQs</a></li>
+                            <li><a href="{% url 'inicio' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About Me</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-pad">
-                        <h4>Heading 2</h4>
+                        <h4>Recetas</h4>
                         <ul class="list-unstyled">
-                            <li><a href="#">Website Tutorial</a></li>
-                            <li><a href="#">Accessibility</a></li>
-                            <li><a href="#">Disclaimer</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Webmaster</a></li>
+                            <li><a href="{% url 'recipes_list' %}">Ver Recetas</a></li>
+                            <li><a href="{% url 'users_list' %}">Ver Chefs</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-pad">
-                        <h4>Heading 3</h4>
+                        <h4>Chat</h4>
                         <ul class="list-unstyled">
-                            <li><a href="#">Parks and Recreation</a></li>
-                            <li><a href="#">Public Works</a></li>
-                            <li><a href="#">Police Department</a></li>
-                            <li><a href="#">Fire</a></li>
-                            <li><a href="#">Mayor and City Council</a></li>
-                            <li>
-                                <a href="#"></a>
-                            </li>
+                            {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'users_list' %}">Ver Chat Rooms</a></li>
+                            {% else %}
+                                <li><a href="{% url 'login' %}">Ingresa aquí para ver los chat rooms</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <h4>Follow Us</h4>
                     <ul class="social-network social-circle">
-                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://es-la.facebook.com/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.instagram.com/" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>

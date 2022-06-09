@@ -1,12 +1,8 @@
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from recipes_app.models import *
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
 from .forms import *
 
 
@@ -18,7 +14,7 @@ def inicio(request):
 
 
 def about(request):
-    return render(request, 'about_us.html')
+    return render(request, 'about_me.html')
 
 
 # Recipes

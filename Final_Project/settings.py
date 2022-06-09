@@ -76,12 +76,18 @@ WSGI_APPLICATION = 'Final_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+SECRET_DB_KEY = os.environ['SECRET_DB_KEY']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_final_project',
+        'NAME': 'django_project',
         'USER': 'root',
-        'PASSWORD': 'Cano123@',
+        'PASSWORD': SECRET_KEY,
         'HOST': 'localhost',
         'PORT': ''
     }
@@ -129,6 +135,9 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGOUT_REDIRECT_URL = '/home'
-LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/recipes/list/'
 LOGIN_URL = '/login/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

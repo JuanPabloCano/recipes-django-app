@@ -5,4 +5,3 @@ from .models import *
 
 admin.site.register(Recipes)
 admin.site.register(UserModel)
-admin.site.register(Avatar)

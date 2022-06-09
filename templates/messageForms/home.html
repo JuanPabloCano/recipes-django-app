@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #3A6073;
+        }
+    </style>
+    <form id="post-form" method="POST" action="checkview">{% csrf_token %}
+        <div class="container d-grid justify-content-center">
+            <h2 class="display-4 text-center" style="height:13rem">Bienvenido a las salas de chat, seleccione una para continuar</h2>
+            <div class="row">
+                <div class="col-md-4-mb-5">
+                    <label>Rooms</label>
+                    <select class="form-select" aria-label="Default select example" name="room_name" id="room_name">
+                        {% for room in rooms %}
+                            <option>{{ room.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-8-mb-5">
+                    <label>Username</label>
+                    <input type="text" name="username" id="username" width="100px" placeholder="Ingrese un nombre de usuario"/>
+                </div>
+            </div>
+            <input class="btn btn-secondary btn-lg mt-5" type="submit" value="Ingresar a la sala">
+        </div>
+    </form>
+{% endblock %}
