@@ -79,15 +79,13 @@ WSGI_APPLICATION = 'Final_Project.wsgi.application'
 import os
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
-SECRET_DB_KEY = os.environ['SECRET_DB_KEY']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_project',
         'USER': 'root',
-        'PASSWORD': SECRET_KEY,
+        'PASSWORD': 'cano123@',
         'HOST': 'localhost',
         'PORT': ''
     }
