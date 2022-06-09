@@ -1,23 +1,30 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from .forms import *
 
 
 # Create your views here.
 
-
-def inicio(request):
-    return render(request, 'index.html')
-
-
-def about(request):
-    return render(request, 'about_me.html')
-
-
 # Recipes
+
+class HomePage(TemplateView):
+    template_name = 'index.html'
+
+    def get(self, request, *args, **kwargs):
+        ctx = {'title': 'Prueba'}
+        return render(request, self.template_name, ctx)
+
+
+class AboutMePage(TemplateView):
+    template_name = 'about_me.html'
+
+    def get(self, request, *args, **kwargs):
+        ctx = {'title': 'Prueba'}
+        return render(request, self.template_name, ctx)
+
 
 class RecipesList(ListView):
     model = Recipes
@@ -54,8 +61,12 @@ class RecipesDelete(DeleteView):
     fields = ['recipe_name', 'creation_date', 'recipe_ingredients', 'recipe_instructions', 'user']
 
 
-def recipe_search_result(request):
-    return render(request, 'recipeForms/recipes_list.html')
+class RecipeSearchResult(TemplateView):
+    template_name = 'recipeForms/recipes_list.html'
+
+    def get(self, request, *args, **kwargs):
+        ctx = {'title': 'Prueba'}
+        return render(request, self.template_name, ctx)
 
 
 def search_recipes(request):
@@ -108,8 +119,12 @@ class UserDelete(DeleteView):
     fields = ['user_full_name', 'user_age', 'user_email']
 
 
-def user_search_result(request):
-    return render(request, 'userForms/users_list.html')
+class UserSearchResult(TemplateView):
+    template_name = 'userForms/users_list.html'
+
+    def get(self, request, *args, **kwargs):
+        ctx = {'title': 'Prueba'}
+        return render(request, self.template_name, ctx)
 
 
 def search_users(request):
